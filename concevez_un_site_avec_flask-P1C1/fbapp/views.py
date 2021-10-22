@@ -6,25 +6,24 @@ app = Flask(__name__)
 app.config.from_object('config')
 # To get one variable, tape app.config['MY_VARIABLE']
 
-from .utils import find_content
+from .utils import find_content, OpenGraphImage
 
 @app.route('/')
 @app.route('/index/')
 def index():
-    og_description = 'Faites le test ultime et découvrez qui vous êtes vraiment !'
-    if 'img' in request.args:
-
-        img = request.args.get('img')
-        og_img = url_for('static', filename=img, _external=True)
-        og_url = url_for('index', img=img, _external=True)
-    else:
-        description = """
+    description = """
         Toi, tu sais comment utiliser la console ! Jamais à court d'idées
         pour réaliser ton objectif, tu es déterminé-e et persévérant-e. Tes amis disent d'ailleurs
         volontiers que tu as du caractère et que tu ne te laisses pas marcher sur les pieds. Un peu
         hacker sur les bords, tu aimes trouver des solutions à tout problème. N'aurais-tu pas un petit
         problème d'autorité ? ;-)
-        """
+    """
+    og_description = 'Faites le test ultime et découvrez qui vous êtes vraiment !'
+    if 'img' in request.args:
+        img = request.args.get('img')
+        og_img = url_for('static', filename=img, _external=True)
+        og_url = url_for('index', img=img, _external=True)
+    else:
         og_img = url_for('static', filename='tmp/sample.jpg', _external=True)
         og_url = url_for('index', _external=True)
     return render_template('index.html',
@@ -43,7 +42,7 @@ def result():
     description = find_content(gender).description
     user_name = request.args.get('first_name')
     uid = request.args.get('id')
-    img = 'tmp/sample.jpg'
+    img = OpenGraphImage(uid, user_name, description).location
     og_img = url_for('static', filename=img, _external=True)
     og_url = url_for('index', _external=True, img=img)
     og_description = 'Faites le test ultime et découvrez qui vous êtes vraiment !'

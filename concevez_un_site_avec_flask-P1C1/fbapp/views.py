@@ -10,5 +10,6 @@ app.config.from_object('config')
 def index():
     return render_template('index.html')
 
-#if __name__ == "__main__":
-#    app.run()
+@app.route('/result/')
+def result():
+    return render_template('result.html')

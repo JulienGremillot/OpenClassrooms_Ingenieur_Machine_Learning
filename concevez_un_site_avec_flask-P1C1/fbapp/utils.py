@@ -34,7 +34,6 @@ class OpenGraphImage:
             # en-dessous.
             current_h += h + pad
 
-        self.print_on_img(background, description, 70, 50)
         background.save(self._path(uid))
 
     def _path(self, uid):

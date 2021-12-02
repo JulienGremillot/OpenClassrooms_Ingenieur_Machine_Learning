@@ -81,13 +81,13 @@ zoom aléatoire
 
 ![](img/P6_05_presentation10.png)
 
-![](img/P6_05_presentation11.png)
-
-![](img/P6_05_presentation12.png)
-
 # Optimisation des hyper-paramètres
 
 Utilisation de Keras Tuner
+
+![](img/P6_05_presentation11.png)
+
+![](img/P6_05_presentation12.png)
 
 # Entrainement avec les hyper-paramètres
 

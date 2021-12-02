@@ -200,7 +200,7 @@ Je sauvegarde les classes au format Pickle, et les poids du modèle au format h5
   * Traite l’image reçue en entrée
   * Réalise la prédiction
   * Sort les 3 premières races avec leurs taux de probabilité associés
-  * 
+
 * Utilisation en ligne de commande :
 
 ![](img/P6_05_presentation39.png)
@@ -209,7 +209,7 @@ Je sauvegarde les classes au format Pickle, et les poids du modèle au format h5
 
 ![](img/P6_05_presentation41.png)
 
-![](img/CP6_05_presentation42.png)
+![](img/P6_05_presentation42.png)
 
 ![](img/P6_05_presentation43.png)
 

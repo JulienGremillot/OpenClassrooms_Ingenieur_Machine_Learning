@@ -17,7 +17,7 @@ Dans un second temps, l'application pourrait éventuellement lui conseiller des 
 
 ![](img/PSant%C3%A9_03_presentation0.png)
 
-1 – Valeurs manquantes
+## 1 – Valeurs manquantes
 
 La première constatation réalisée sur le jeu de données s’est faite en sortant le pourcentage de valeurs manquantes pour chaque type de données.
 
@@ -25,7 +25,7 @@ Ainsi, sur 186 colonnes proposées dans le tableau de données, il en existe 119
 
 J’ai donc commencé par supprimer ces colonnes.
 
-# 2 - Données propres à la base OpenFoodFacts
+## 2 - Données propres à la base OpenFoodFacts
 
 Certaines colonnes faisaient références à des données propres à la gestion de la base en elle-même, comme l’auteur de la saisie, les dates de création/modification des données, l’état de complétion pour chaque produit, etc.
 
@@ -33,27 +33,27 @@ D’autres n’avaient également pas d’intérêt d’analyse, comme les URLs 
 
 Ces colonnes ont été également supprimées.
 
-# 3 – Valeurs nutritionnelles incorrectes
+## 3 – Valeurs nutritionnelles incorrectes
 
 Plusieurs colonnes suffixées par « _100g » correspondent à des valeurs nutritionnelles pour 100g de produit. Il devrait être impossible que ces valeurs soient négatives ou supérieures à 100.
 
 Les lignes comportant des valeurs incorrectes ont été supprimées.
 
-# 4 - Valeurs nutritionnelles absentes
+## 4 - Valeurs nutritionnelles absentes
 
 Puisque notre application vise à estimer un nutriscore en se basant sur un minimum de valeurs nutritionnelles, j’ai également supprimé les lignes pour lesquelles aucune des colonnes conservées de valeurs nutritionnelles n’était renseignée.
 
-# 5 - Valeurs nutritionnelles aberrantes (outliers)
-
-![](img/PSant%C3%A9_03_presentation1.png)
+## 5 - Valeurs nutritionnelles aberrantes (outliers)
 
 J’ai utilisé des boites à moustaches (boxplots) sur les valeurs nutritionnelles afin de vérifier la présence de valeurs aberrantes
+
+![](img/PSant%C3%A9_03_presentation1.png)
 
 En me basant sur la méthode de l'intervalle interquartile (IQR) de suppression des outliers, j’ai donc procédé à l’élimination des lignes comportant des valeurs inférieures ou supérieures selon un ratio de 1,5 fois les bornes des premier et troisième quartiles.
 
 Ce traitement a entrainé la plus grosse suppression de lignes, avec 510.433 lignes supprimées.
 
-# 6 – Doublons dans les données
+## 6 – Doublons dans les données
 
 J’ai ensuite cherché d’éventuels doublons dans les données, en commençant par les codes :
 
@@ -63,7 +63,7 @@ Des recherches de doublons par nom de produit, puis par couple nom/marque, puis 
 
 Je n’ai donc pas poursuivi sur cette piste avec laquelle je ne me suis pas senti en confiance pour supprimer des lignes.
 
-# 7 – Remplacement des valeurs manquantes
+## 7 – Remplacement des valeurs manquantes
 
 ### Intuition
 
@@ -79,7 +79,7 @@ J’ai donc fait une première corrélation entre les catégories issues de la c
 Cette première analyse m’a conforté dans mon intuition et j’ai donc continué
 mes traitements en réalisant à chaque fois une boucle sur ces catégories.
 
-# Pourcentages de valeurs manquantes et sélection des méthodes
+### Pourcentages de valeurs manquantes et sélection des méthodes
 
 J’ai commencé par vérifier le pourcentage de valeurs manquantes pour les colonnes des valeurs nutritionnelles :
 
@@ -95,7 +95,7 @@ Le calcul de la médiane pour chaque catégorie a été relativement simple.
 
 ![](img/PSant%C3%A9_03_presentation2.png)
 
-# Estimation des valeurs manquantes par un modèle KNN
+### Estimation des valeurs manquantes par un modèle KNN
 
 Pour cette partie, j’ai utilisé le module KNNImputer de Scikit-Learn.
 
@@ -111,7 +111,7 @@ remplacement définitif des valeurs manquantes sur ces données.
 
 J’ai donc pu sauvegarder mon jeu de données nettoyé et complété avant de passer à l’étape suivante.
 
-# Conclusion du nettoyage
+## Conclusion du nettoyage
 
 Je suis parti d’une base de 1 888 730 lignes et 186 colonnes, pour arriver après nettoyage à une base de 967 012
 lignes et 52 colonnes.
@@ -131,14 +131,14 @@ Sur les colonnes restantes, nous avons identifié pour notre application :
 
 # Description et analyse univariée des différentes variables importantes
 
-1 – Catégories
+## 1 – Catégories
 
 La catégorie étant l’une des variables importantes de ces données, j’ai commencé par vérifier le nombre de produits dans
 chacune d’entre elles.
 
 ![](img/PSant%C3%A9_03_presentation4.png)
 
-# 2 – Le nutriscore
+## 2 – Le nutriscore
 
 J’ai également recherché la répartition des différentes valeurs de nutriscore présentes globalement dans le jeu de
 données
@@ -147,7 +147,7 @@ données
 
 ![](img/PSant%C3%A9_03_presentation6.png)
 
-# Lien entre« nutrition-score-fr_100g » et « nutriscore_grade »
+### Lien entre « nutrition-score-fr_100g » et « nutriscore_grade »
 
 J’ai cherché à mieux comprendre le lien entre la valeur de la colonne « nutrition-score-fr_100g » et le nutriscore
 lui-même (colonne « nutriscore_grade »).
@@ -157,19 +157,19 @@ j’ai pu trouver sur internet.
 
 ![](img/PSant%C3%A9_03_presentation7.png)
 
-# Matrice de corrélation
+### Matrice de corrélation
 
 Pour confirmer la relation entre les deux colonnes, j’ai calculé la matrice de corrélation entre les colonnes
 nutrition-score-fr_100g  et nutriscore_grade.
 
-# Distribution du nutriscore
+### Distribution du nutriscore
 
 ![](img/PSant%C3%A9_03_presentation8.png)
 
 En examinant la distribution du nutriscore (colonne numérique « nutrition-score-fr_100g) on remarque que celle-ci
 correspond à une distribution bimodale.
 
-# 3 – Distributions des valeurs nutritionnelles
+## 3 – Distributions des valeurs nutritionnelles
 
 J’ai examiné la distribution des valeurs nutritionnelles restantes dans notre jeu de données, dont voici deux exemples :
 
@@ -186,7 +186,7 @@ Aucune des distributions visualisées ne semble particulière, elles sont global
 
 ![](img/PSant%C3%A9_03_presentation12.png)
 
-1 – Nutriscore par catégorie
+## 1 – Nutriscore par catégorie
 
 L’analyse des nutriscores par catégorie donne des résultats qui semblent très cohérents :
 
@@ -200,7 +200,7 @@ Les catégories « alcool » et « snacks sucrés » présentent une majorité d
 On constate des distributions très différentes en fonction de chaque catégorie, par exemple si on reprend deux
 catégories très différentes : les « fruits et légumes » et les « snacks sucrés »
 
-# 2 - Valeurs nutritionnelles par catégorie
+## 2 - Valeurs nutritionnelles par catégorie
 
 J’ai ensuite visualisé les distributions de nos différentes valeurs nutritionnelles par catégorie.
 Pour faciliter la lecture des visualisations, pour chaque catégorie j’ai divisé les valeurs nutritionnelles en 2
@@ -217,13 +217,13 @@ J’ai également réalisé une analyse sous la forme de boxplots entre les cat�
 Enfin, j’ai réalisé un test chi-2 entre les catégories et le nutriscore.
 On vérifie que certaines catégories sont fortement corrélées avec le nutriscore :
 * bon nutriscore pour les fruits
-* * mauvais pour les snacks sucrés
+* mauvais pour les snacks sucrés
 
 ![](img/PSant%C3%A9_03_presentation18.png)
 
 ![](img/PSant%C3%A9_03_presentation19.png)
 
-# 3 - Valeurs nutritionnelles et nutriscore
+## 3 - Valeurs nutritionnelles et nutriscore
 
 J’ai également réalisé le même type d'analyse bivariée à l’aide de _boxplots_ entre le nutriscore et les valeurs
 nutritionnelles.
@@ -234,19 +234,19 @@ Sur ces deux exemples, on constate que les produits de nutriscore « E » sont
 
 ![](img/PSant%C3%A9_03_presentation20.png)
 
-![](img/PSant%C3%A9_03_presentation21.png)
-
-# Matrice de corrélation valeurs nutritionnelles et nutriscore
+### Matrice de corrélation valeurs nutritionnelles et nutriscore
 
 Pour cette analyse, j’ai calculé la matrice de corrélation entre les valeurs nutritionnelles et le nutriscore (en
 prenant en compte la valeur numérique de la colonne « nutrition-score-fr_100g »)
+
+![](img/PSant%C3%A9_03_presentation21.png)
 
 On a donc une corrélation forte avec certaines valeurs nutritionnelles, et moins importantes avec d'autres.
 
 On remarque également une forte corrélation de certaines valeurs nutritionnelles entre elles (ex: fat &saturated_fat,
 salt& sodium,sugar& carbohydrates)
 
-# 4 – Réalisation d’une ACP (Analyse en Composantes Principales)
+## 4 – Réalisation d’une ACP (Analyse en Composantes Principales)
 
 En examinant les colonnes des valeurs nutritionnelles, nous commençons par afficher l’éboulis des valeurs propres:
 
@@ -254,7 +254,7 @@ Ici nous n’avons pas précisé le nombre de composants, mais paramétré sciki
 
 ![](img/PSant%C3%A9_03_presentation22.png)
 
-# Cercle des corrélations
+### Cercle des corrélations
 
 Si on regarde les deux premiers plans, on vérifie les corrélations déjà observées et on peut en déduire les
 interprétations suivantes :
@@ -266,7 +266,7 @@ interprétations suivantes :
 
 ![](img/PSant%C3%A9_03_presentation23.png)
 
-# Projection des individus
+### Projection des individus
 
 J’ai projetté séparément les différents nutriscores pour une meilleure visualisation.
 

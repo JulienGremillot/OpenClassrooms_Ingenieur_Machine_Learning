@@ -1,6 +1,6 @@
-![](img/Segmentez%20des%20clients%20d%27un%20site0.jpg)
-
 # Segmentez des clients d'un site de e-commerce
+
+![](img/Segmentez%20des%20clients%20d%27un%20site0.jpg)
 
 ## FORMATION INGENIEUR MACHINE LEARNING - PROJET 4 - JULIEN GREMILLOT
 
@@ -10,10 +10,11 @@
 
 Les données sont disponibles sous la forme de 9 fichiers CSV distincts
 
+![](img/Segmentez%20des%20clients%20d%27un%20site1.png)
+
 L’un des fichiers ne contient qu’une traduction des catégories de produits : c’est donc ce fichier que j’ai choisi de
 traiter en premier
 
-![](img/Segmentez%20des%20clients%20d%27un%20site1.png)
 
 ## Traduction des catégories
 
@@ -23,9 +24,6 @@ traiter en premier
 * J'ajoute les traductions manquantes dans le tableau de traduction.
 * J’ajoute une catégorie «misc» pour les valeurs non renseignées.
 
-![](img/Segmentez%20des%20clients%20d%27un%20site2.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site3.png)
 
 ## Merge « orders » & « customers »
 
@@ -41,18 +39,12 @@ un merge de ces 2 tables.
   * Shape de la table mergée: (99441, 12)
   * Shape de la table sans la colonne de jointure: ( __99441__ , __11__ )
 
-![](img/Segmentez%20des%20clients%20d%27un%20site4.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site5.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site6.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site7.png)
 
 ## Merge avec « order_reviews »
 
 On voit qu'il y a une colonne order_id commune à notre nouvelle table et à la table order_reviews, on regarde comment
 merger :
+
   * Nombre de lignes dansorder_reviews: 100000
   * Nombre de lignes dans data: 99441
   * Nombre deorder_iduniques dansorder_reviews: 99441
@@ -61,19 +53,11 @@ merger :
 Ces chiffres nous indiquent qu'il y a parfois plusieurs reviews pour une même commande.
 On considère que pour une même commande, la __review__  __la plus récente__ est celle qui doit être conservée.
 On trie donc par date de review avant de dédoublonner la table order_reviews.
-    * Shape de order_reviews: (99441, 7)
-    * Shape de data: (99441, 11)
-    * Shape de la table mergée: ( __99441, 16__ )
 
-![](img/Segmentez%20des%20clients%20d%27un%20site8.png)
+  * Shape de order_reviews: (99441, 7)
+  * Shape de data: (99441, 11)
+  * Shape de la table mergée: ( __99441, 16__ )
 
-![](img/Segmentez%20des%20clients%20d%27un%20site9.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site10.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site11.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site12.png)
 
 # Merge avec « order_payments »
 
@@ -82,31 +66,24 @@ commande. Il s’agit en fait de paiements avec __différents moyens de paiement
 
 On pourrait dédoublonner en faisant simplement la somme des paiements, mais on perdrait l'information concernant le
 __moyen de paiement__. On va donc ajouter l'information sur la commande avant de faire le total des paiements.
+
   * Shape de data: (99441, 16)
   * Shape de vouchers: (3866, 2)
   * Shape decredit_card: (76505, 2)
   * Shape deboleto: (19784, 2)
   * Shape dedebit_card: (1528, 2)
   * Shape de la table mergée: (99441, 20)
+
 On ajoute la __somme des paiements__ pour chaque commande
-    * Shape de data: (99441, 20)
-    * Shape desum_payments: (99440, 2)
-    * Shape de la table mergée: (99441, 21)
+
+  * Shape de data: (99441, 20)
+  * Shape desum_payments: (99440, 2)
+  * Shape de la table mergée: (99441, 21)
+
 Il y a quelques 0 dans cette colonne, mais il semble que le montant soit correct :
 le paiement est égal à la somme des prix des produits achetés plus les frais de transport. 
 On considère qu'il s'agit de valeur erronées, on les supprime (4 lignes).
-
-![](img/Segmentez%20des%20clients%20d%27un%20site13.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site14.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site15.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site16.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site17.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site18.png)
+  
 
 ## Merge avec « order_items » (1/2)
 
@@ -131,9 +108,11 @@ les produits qui se classent dans les "meilleures ventes".
 ## Merge « order_items » & « products »
 
 On merge les informations produits dans «order_items» :
+
   * Shape deorder_items: (112650, 8)
   * Shape deproducts: (32951, 9)
   * Shape de la tableorder_itemsmergée: (112650, 16)
+
 On examine la distribution des catégories produits, on simplifie et on utilise OneHotEncoder:
 
 ![](img/Segmentez%20des%20clients%20d%27un%20site20.png)
@@ -145,28 +124,15 @@ On examine la distribution des catégories produits, on simplifie et on utilise 
 ## Merge avec « order_items » (2/2)
 
 On choisit de conserver les valeurs de longueur de textes et du nombre de photos :
-Puis on merge dans la table finale :
-  * Shape de data: (99437, 25)
-  * Shape desum_categs: (98666, 13)
-  * Shape de la table mergée: ( __99437, 37__ )
 
 ![](img/Segmentez%20des%20clients%20d%27un%20site23.png)
 
-![](img/Segmentez%20des%20clients%20d%27un%20site24.png)
+Puis on merge dans la table finale :
 
-![](img/Segmentez%20des%20clients%20d%27un%20site25.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site26.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site27.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site28.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site29.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site30.png)
-
-![](img/Segmentez%20des%20clients%20d%27un%20site31.png)
+  * Shape de data: (99437, 25)
+  * Shape desum_categs: (98666, 13)
+  * Shape de la table mergée: ( __99437, 37__ )
+  
 
 ## Examen des localisations
 
@@ -329,8 +295,10 @@ Silhouette Coefficient: 0,318
 
 ## Conclusion segmentation
 
-* La meilleure segmentation obtenue en terme de coefficient de silhouette reste la « simple » segmentation RFM : Récence / Fréquence / Montant
-* On obtient donc les populations suivantes :
+La meilleure segmentation obtenue en terme de coefficient de silhouette reste la « simple » segmentation RFM : Récence / Fréquence / Montant
+
+On obtient donc les populations suivantes :
+
   * nouveau client
   * client qui commande souvent
   * client qui ne commande pas souvent, mais pour un gros montant
@@ -414,15 +382,19 @@ J’ai pris soin comme demandé dans le sujet du projet de respecter la norme PE
 
 Pour cela, j’ai installé le module «pycodestyle» sur mon instanceJupyter, et utilisé les commandes
 
-<span style="color:#232629">%</span>  <span style="color:#232629">load_ext</span> 
-<span style="color:#232629">pycodestyle_magic</span>
+```
+%load_ext
+pycodestyle_magic
+```
 
 et
 
-<span style="color:#232629">%</span>  <span style="color:#232629">pycodestyle_on</span>
+```
+%pycodestyle_on
+```
 
-<span style="color:#232629">J’ai également suivi le cours</span>  <span style="color:#232629">OpenClassRooms</span> 
-<span style="color:#232629">« Écrivez du code Python</span>  <span style="color:#232629">maintenable »</span>
+J’ai également suivi le cours OpenClassRooms
+«[Écrivez du code Python maintenable](https://openclassrooms.com/fr/courses/7160741-ecrivez-du-code-python-maintenable)»
 
 ![](img/Segmentez%20des%20clients%20d%27un%20site76.png)
 

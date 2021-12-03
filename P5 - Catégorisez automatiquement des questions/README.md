@@ -2,7 +2,7 @@
 
 ![](img/Cat%C3%A9gorisation%20de%20questions2.png)
 
-## Projet OpenClassrooms – Julien Gremillot
+## Julien Gremillot - Parcours OpenClassrooms - Ingénieur Machine Learning – PROJET 5
 
 # Le Projet
 
@@ -121,9 +121,10 @@ OneVsRestClassifier(SVC(kernel='linear'))
 
 # Déploiement d’une API
 
-Développement avec «PyCharm»
+Développement avec l'IDE « [PyCharm](https://www.jetbrains.com/fr-fr/pycharm/) »
 
-Architecture issue du cours « Concevez un site avec Flask »
+Architecture issue du cours 
+« [Concevez un site avec Flask](https://openclassrooms.com/fr/courses/4425066-concevez-un-site-avec-flask) »
 
 ![](img/Cat%C3%A9gorisation%20de%20questions29.png)
 

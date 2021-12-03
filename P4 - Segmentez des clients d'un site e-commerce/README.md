@@ -2,7 +2,7 @@
 
 ![](img/Segmentez%20des%20clients%20d%27un%20site0.jpg)
 
-## FORMATION INGENIEUR MACHINE LEARNING - PROJET 4 - JULIEN GREMILLOT
+## Julien Gremillot - Parcours OpenClassrooms - Ingénieur Machine Learning – PROJET 4
 
 # Analyse exploratoire
 

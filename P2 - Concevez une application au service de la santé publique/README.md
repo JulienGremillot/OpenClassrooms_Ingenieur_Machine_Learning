@@ -1,6 +1,6 @@
 # Concevez une application au service de la santé publique
 
-## Projet 2 OpenClassrooms - Julien Gremillot
+## Julien Gremillot - Parcours OpenClassrooms - Ingénieur Machine Learning – PROJET 2
 
 
 # Présentation de l’idée d’application

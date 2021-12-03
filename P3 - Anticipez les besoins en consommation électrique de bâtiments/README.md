@@ -1,9 +1,8 @@
-![](img/Anticipez%20les%20besoins%20en%20consommation%20%C3%A9lectrique%20de%20b%C3%A2timents0.jpg)
-
 # Anticipez les besoins en consommation électrique de bâtiments
 
-## Julien Gremillot
-Parcours OpenClassrooms - Ingénieur Machine Learning – PROJET 3
+![](img/Anticipez%20les%20besoins%20en%20consommation%20%C3%A9lectrique%20de%20b%C3%A2timents0.jpg)
+
+## Julien Gremillot - Parcours OpenClassrooms - Ingénieur Machine Learning – PROJET 3
 
 # 1 – L’analyse exploratoire
 

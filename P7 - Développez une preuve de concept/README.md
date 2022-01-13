@@ -4,7 +4,7 @@
 
 ![](img/Aspose.Words.9756c378-0560-4c16-b0ed-666e4d62b53b.005.png)![](img/Aspose.Words.9756c378-0560-4c16-b0ed-666e4d62b53b.006.png)
 
-###10 JANVIER 2022
+**10 JANVIER 2022**
 
 **Julien Gremillot**
 

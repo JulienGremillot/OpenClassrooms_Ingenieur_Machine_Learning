@@ -1,5 +1,5 @@
 
-#Participez à une compétition Kaggle !
+# Participez à une compétition Kaggle !
 
 ![""](img/Aspose.Words.6b5b9b54-150f-4e7d-8255-c7d4d49673a0.001.png)
 
@@ -9,7 +9,7 @@
 
 *Décembre 2021*
 
-##INSTRUCTIONS
+## INSTRUCTIONS
 
 Ce projet consiste à participer à une compétition organisée par
  [Kaggle](https://en.wikipedia.org/wiki/Kaggle), une plateforme qui organise 

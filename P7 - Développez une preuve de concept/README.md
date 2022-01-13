@@ -3,56 +3,12 @@
 ## Développez une preuve de concept
 
 ![](img/Aspose.Words.9756c378-0560-4c16-b0ed-666e4d62b53b.005.png)![](img/Aspose.Words.9756c378-0560-4c16-b0ed-666e4d62b53b.006.png)
+
 ###10 JANVIER 2022
+
 **Julien Gremillot**
 
 ![séparateur de texte](img/Aspose.Words.9756c378-0560-4c16-b0ed-666e4d62b53b.007.png)
-
-# Table des matières
-
-[Introduction](#_Toc92465171)
-
-[Un sujet : la classification d’image](#_Toc92465172)
-
-[Les Transformers](#_Toc92465173)
-
-[Les Vision Transformers](#_Toc92465174)
-
-[Sélection d’un dataset](#_Toc92465175)
-
-[Stanford Dogs Dataset](#_Toc92465176)
-
-[Stanford Cars Dataset](#_Toc92465177)
-
-[Création d’un Vision Transformer](#_Toc92465178)
-
-[Démarche de création du modèle](#_Toc92465179)
-
-[Encodage des patchs](#_Toc92465180)
-
-[Architecture du modèle](#_Toc92465181)
-
-[Résultats obtenus](#_Toc92465182)
-
-[Fine-Tuning d’un Vision Transformer](#_Toc92465183)
-
-[Librairies Hugging Face](#_Toc92465184)
-
-[Premiers résultats](#_Toc92465185)
-
-[Equilibrage manuel des classes](#_Toc92465186)
-
-[Réduction du nombre de classes](#_Toc92465187)
-
-[Nouveaux tests sur le modèle « from scratch »](#_Toc92465188)
-
-[Conclusions](#_Toc92465189)
-
-[Perspectives](#_Toc92465190)
-
-[Références](#_Toc92465191)
-
-
 
 # Introduction
 
